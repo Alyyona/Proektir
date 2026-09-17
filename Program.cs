@@ -1,43 +1,47 @@
 using System;
+using System.Drawing;
 
 namespace PrakticheskayaRabota
 {
-    // =============================================================
-    //  Класс Program - только точка входа в программу.
-    //  Передаёт данные между классом ввода/вывода (ConsoleUI)
-    //  и классом разбора (PointParser).
-    // =============================================================
+
     class Program
     {
-        // Точка входа в программу
         static void Main(string[] args)
         {
-            // Вспомогательные объекты
-            ConsoleUI userInterface = new ConsoleUI();   // ввод и вывод
-            PointParser parser = new PointParser();      // разбор строки
 
-            // Приветствие
+            ConsoleUI userInterface = new ConsoleUI();   
+            PointParser parser = new PointParser();    
+            List<Point2D> points = new List<Point2D>();
+
+
             userInterface.ShowHeader();
 
-            // Чтение описания объекта с консоли
-            string inputLine = userInterface.ReadDescription();
-
-            // Разбор строки в объект "точка"
-            string errorMessage;
-            Point2D point = parser.Parse(inputLine, out errorMessage);
-
-            // Вывод результата на экран
-            if (point == null)
+            while(true)
             {
-                userInterface.ShowNotCreated(errorMessage);
-            }
-            else
-            {
-                userInterface.ShowCreated(point);
-            }
+                string inputLine = userInterface.ReadDescription();
 
-            // Ожидание клавиши перед выходом
+                
+                if (string.IsNullOrWhiteSpace(inputLine))
+                {
+                    break;
+                }
+
+                string errorMessage;
+                Point2D point = parser.Parse(inputLine, out errorMessage);
+
+                if (point == null)
+                {
+                    userInterface.ShowNotCreated(errorMessage);
+                }
+                else
+                {
+                    points.Add(point);              
+                    userInterface.ShowCreated(point);
+                }
+            }
+            
             userInterface.WaitToExit();
+            
         }
     }
 }
