@@ -2,17 +2,13 @@ using System;
 
 namespace PrakticheskayaRabota
 {
-    // =============================================================
-    //  Класс Point2D - программный объект "двумерная точка".
-    // =============================================================
+
     class Point2D
     {
-        // --- Поля (сохраняют данные объекта) ---
-        private double _x;        // координата X
-        private double _y;        // координата Y
-        private string _color;    // цвет точки
+        private double _x;       
+        private double _y;     
+        private string _color;   
 
-        // --- Свойства (публичный доступ к полям) ---
         public double X
         {
             get { return _x; }
@@ -31,7 +27,6 @@ namespace PrakticheskayaRabota
             set { _color = value; }
         }
 
-        // --- Конструктор: создаёт точку с заданными значениями ---
         public Point2D(double x, double y, string color)
         {
             _x = x;
@@ -39,7 +34,6 @@ namespace PrakticheskayaRabota
             _color = color;
         }
 
-        // --- Метод: возвращает описание точки в виде строки ---
         public string GetDescription()
         {
             string result = "Точка: X = " + _x +
@@ -47,5 +41,6 @@ namespace PrakticheskayaRabota
                             ", цвет = " + _color;
             return result;
         }
+
     }
 }
