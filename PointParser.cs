@@ -12,7 +12,7 @@ namespace PrakticheskayaRabota
 
             string[] parts = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length < 4)
+            if (parts.Length < 3)
             {
                 errorMessage = "Ошибка: строка записана не полностью.";
                 return null;
@@ -22,12 +22,26 @@ namespace PrakticheskayaRabota
             int xIndex = 0;
             int yIndex = 1;
             int colorIndex = 2;
+            int flagIndex = -1;   
+
+            if (parts.Length == 4)
+            {
+                flagIndex = 3;
+            }
+
+            if (parts.Length == 5)
+            {
+                xIndex = 2;
+                yIndex = 3;
+                colorIndex = 4;
+            }
 
             if (parts.Length >= 6)
             {
                 xIndex = 2;
                 yIndex = 3;
                 colorIndex = 4;
+                flagIndex = 5;
             }
 
 
@@ -57,8 +71,28 @@ namespace PrakticheskayaRabota
                 return null;
             }
 
-            // Создаём и возвращаем объект "точка"
-            Point2D createdPoint = new Point2D(x, y, color, false);
+            // Разбор флага, если он задан в строке
+            bool flag = false;
+            if (flagIndex != -1)
+            {
+                string flagText = parts[flagIndex];
+
+                if (flagText == "true" || flagText == "1")
+                {
+                    flag = true;
+                }
+                else if (flagText == "false" || flagText == "0")
+                {
+                    flag = false;
+                }
+                else
+                {
+                    errorMessage = "Ошибка: флаг должен быть true или false.";
+                    return null;
+                }
+            }
+
+            Point2D createdPoint = new Point2D(x, y, color, flag);
             return createdPoint;
         }
 

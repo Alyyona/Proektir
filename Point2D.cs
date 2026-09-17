@@ -34,7 +34,7 @@ namespace PrakticheskayaRabota
             set { _flag = value; }
         }
 
-        public Point2D(double x, double y, string color, bool flag = false)
+        public Point2D(double x, double y, string color, bool flag)
         {
             _x = x;
             _y = y;
