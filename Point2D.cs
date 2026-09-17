@@ -8,6 +8,7 @@ namespace PrakticheskayaRabota
         private double _x;       
         private double _y;     
         private string _color;   
+        private bool _flag;
 
         public double X
         {
@@ -27,20 +28,27 @@ namespace PrakticheskayaRabota
             set { _color = value; }
         }
 
-        public Point2D(double x, double y, string color)
+        public bool Flag
+        {
+            get { return _flag; }
+            set { _flag = value; }
+        }
+
+        public Point2D(double x, double y, string color, bool flag = false)
         {
             _x = x;
             _y = y;
             _color = color;
+            _flag = flag;
         }
 
         public string GetDescription()
         {
             string result = "Точка: X = " + _x +
                             ", Y = " + _y +
-                            ", цвет = " + _color;
+                            ", цвет = " + _color +
+                             ", флаг = " + _flag;
             return result;
         }
-
     }
 }

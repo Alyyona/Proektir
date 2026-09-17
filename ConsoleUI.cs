@@ -17,6 +17,7 @@ namespace PrakticheskayaRabota
 
         public string ReadDescription()
         {
+            Console.WriteLine("Вводите точки. Пустая строка - выход.");
             Console.Write("Введите описание объекта: ");
             string inputLine = Console.ReadLine();
             return inputLine;

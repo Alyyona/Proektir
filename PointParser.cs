@@ -12,7 +12,7 @@ namespace PrakticheskayaRabota
 
             string[] parts = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length < 3)
+            if (parts.Length < 4)
             {
                 errorMessage = "Ошибка: строка записана не полностью.";
                 return null;
@@ -23,7 +23,7 @@ namespace PrakticheskayaRabota
             int yIndex = 1;
             int colorIndex = 2;
 
-            if (parts.Length >= 5)
+            if (parts.Length >= 6)
             {
                 xIndex = 2;
                 yIndex = 3;
@@ -58,7 +58,7 @@ namespace PrakticheskayaRabota
             }
 
             // Создаём и возвращаем объект "точка"
-            Point2D createdPoint = new Point2D(x, y, color);
+            Point2D createdPoint = new Point2D(x, y, color, false);
             return createdPoint;
         }
 

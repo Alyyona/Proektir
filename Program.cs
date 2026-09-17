@@ -11,29 +11,37 @@ namespace PrakticheskayaRabota
 
             ConsoleUI userInterface = new ConsoleUI();   
             PointParser parser = new PointParser();    
+            List<Point2D> points = new List<Point2D>();
 
 
             userInterface.ShowHeader();
 
-
-            string inputLine = userInterface.ReadDescription();
-
-            
-            string errorMessage;
-            Point2D point = parser.Parse(inputLine, out errorMessage);
-
-            
-            if (point == null)
+            while(true)
             {
-                userInterface.ShowNotCreated(errorMessage);
-            }
-            else
-            {
-                userInterface.ShowCreated(point);
-            }
+                string inputLine = userInterface.ReadDescription();
 
+                
+                if (string.IsNullOrWhiteSpace(inputLine))
+                {
+                    break;
+                }
+
+                string errorMessage;
+                Point2D point = parser.Parse(inputLine, out errorMessage);
+
+                if (point == null)
+                {
+                    userInterface.ShowNotCreated(errorMessage);
+                }
+                else
+                {
+                    points.Add(point);              
+                    userInterface.ShowCreated(point);
+                }
+            }
             
             userInterface.WaitToExit();
+            
         }
     }
 }
