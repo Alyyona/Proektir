@@ -30,10 +30,25 @@ namespace PrakticheskayaRabota
                 flagIndex = 3;
             }
 
+            /// Распределение индексов для длины 5
+            bool isFirstWordNumber = TryParseToDouble(parts[0], out _);
+
             if (parts.Length == 5)
             {
-                colorIndex = 3;
-                flagIndex = 4;
+                if (isFirstWordNumber)
+                {
+                    // Если первое число: это 3D точка -> Формат: X Y Z Цвет Флаг
+                    colorIndex = 3;
+                    flagIndex = 4;
+                }
+                else
+                {
+                    // Если текст: это Именованная 2D точка -> Формат: Имя X Y Цвет Флаг
+                    xIndex = 1;
+                    yIndex = 2;
+                    colorIndex = 3;
+                    flagIndex = 4;
+                }
             }
 
             if (parts.Length >= 6)
@@ -58,7 +73,7 @@ namespace PrakticheskayaRabota
 
             /// Разбор координаты Z для Point3D (длина 5) ///
             double z = 0;
-            if (parts.Length == 5)
+            if (parts.Length == 5 && isFirstWordNumber)
             {
                 if (TryParseToDouble(parts[2], out z) == false)
                 {
@@ -66,6 +81,7 @@ namespace PrakticheskayaRabota
                     return null;
                 }
             }
+            
 
 
             string color = parts[colorIndex];
@@ -105,13 +121,13 @@ namespace PrakticheskayaRabota
 
 
             /// Возврат нужного типа объекта в зависимости от длины 
-            if (parts.Length == 5)
+            if (parts.Length == 5 && isFirstWordNumber)
             {
                 // Возвращаем трехмерную точку 
                 return new Point3D(x, y, z, color, flag);
             }
             
-            if (parts.Length >= 6)
+            if (parts.Length >= 6 || parts.Length == 5)
             {
                 // Возвращаем именованную точку. Имя берем из самого первого элемента (индекс 0)
                 string name = parts[0];

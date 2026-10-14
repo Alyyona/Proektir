@@ -50,5 +50,11 @@ namespace PrakticheskayaRabota
                              ", флаг = " + _flag;
             return result;
         }
+
+        public override string ToString()
+        {
+            return $"Point2D ({X}, {Y}) [Color: {Color}, Flag: {Flag}]";
+        }
+
     }
 }
