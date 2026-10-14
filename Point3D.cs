@@ -10,7 +10,7 @@ namespace PrakticheskayaRabota
             Z = z;
         }
 
-        public override string ToString() => $"Point3D ({X}, {Y}, {Z})";
+        public override string ToString() => $"Point3D ({X}, {Y}, {Z}) [Color: {Color}, Flag: {Flag}]";
     }
 }
 
