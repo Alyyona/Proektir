@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace PrakticheskayaRabota
 {
@@ -31,9 +32,8 @@ namespace PrakticheskayaRabota
 
             if (parts.Length == 5)
             {
-                xIndex = 2;
-                yIndex = 3;
-                colorIndex = 4;
+                colorIndex = 3;
+                flagIndex = 4;
             }
 
             if (parts.Length >= 6)
@@ -54,6 +54,17 @@ namespace PrakticheskayaRabota
             {
                 errorMessage = "Ошибка: координаты должны быть числами.";
                 return null;
+            }
+
+            /// Разбор координаты Z для Point3D (длина 5) ///
+            double z = 0;
+            if (parts.Length == 5)
+            {
+                if (TryParseToDouble(parts[2], out z) == false)
+                {
+                    errorMessage = "Ошибка: координата Z должна быть числом.";
+                    return null;
+                }
             }
 
 
@@ -92,6 +103,21 @@ namespace PrakticheskayaRabota
                 }
             }
 
+
+            /// Возврат нужного типа объекта в зависимости от длины 
+            if (parts.Length == 5)
+            {
+                // Возвращаем трехмерную точку 
+                return new Point3D(x, y, z, color, flag);
+            }
+            
+            if (parts.Length >= 6)
+            {
+                // Возвращаем именованную точку. Имя берем из самого первого элемента (индекс 0)
+                string name = parts[0];
+                return new NamePoint(name, x, y, color, flag);
+            }
+
             Point2D createdPoint = new Point2D(x, y, color, flag);
             return createdPoint;
         }
@@ -110,5 +136,32 @@ namespace PrakticheskayaRabota
 
             return ok;
         }
+
+
+        /// Обработка набора (массива) строк
+        public System.Collections.Generic.List<Point2D> ParseLines(string[] lines, out System.Collections.Generic.List<string> errors)
+        {
+            var points = new System.Collections.Generic.List<Point2D>();
+            errors = new System.Collections.Generic.List<string>();
+
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                string errorMessage;
+                Point2D point = Parse(line, out errorMessage);
+
+                if (point != null)
+                {
+                    points.Add(point);
+                }
+                else
+                {
+                    errors.Add($"Строка \"{line}\" => {errorMessage}");
+                }
+            }
+            return points;
+        }
+
     }
 }
