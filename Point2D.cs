@@ -3,7 +3,7 @@ using System;
 namespace PrakticheskayaRabota
 {
 
-    class Point2D
+    public class Point2D
     {
         private double _x;       
         private double _y;     
