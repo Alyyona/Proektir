@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace PrakticheskayaRabota
 {
@@ -40,6 +41,16 @@ namespace PrakticheskayaRabota
                 }
             }
             
+
+            if (points.Count > 0)
+            {
+                Console.WriteLine("\n .... Итоговый список всех распознаных/обработанных точек .... ");
+                foreach (Point2D point in points)
+                {
+                    Console.WriteLine(point.ToString());
+                }
+            }
+
             userInterface.WaitToExit();
             
         }

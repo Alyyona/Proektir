@@ -3,7 +3,7 @@ using System;
 namespace PrakticheskayaRabota
 {
 
-    class Point2D
+    public class Point2D
     {
         private double _x;       
         private double _y;     
@@ -50,5 +50,11 @@ namespace PrakticheskayaRabota
                              ", флаг = " + _flag;
             return result;
         }
+
+        public override string ToString()
+        {
+            return $"Point2D ({X}, {Y}) [Color: {Color}, Flag: {Flag}]";
+        }
+
     }
 }

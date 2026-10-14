@@ -9,8 +9,10 @@ namespace PrakticheskayaRabota
         public void ShowHeader()
         {
             Console.WriteLine("Практическая работа. Вариант 4.");
-            Console.WriteLine("Объект: двумерная точка (координаты X, Y и цвет).");
-            Console.WriteLine("Пример строки:  Двумерные точки: 1.5 2.3 red");
+            Console.WriteLine("Объект: Система геометрических точек ( 2D, 3D и Именнованые).");
+            Console.WriteLine("Пример строки:  2D точка: 1.5 2.3 red true");
+            Console.WriteLine("Пример строки:  3D точка: 1.5 2.3 6.7 red false");
+            Console.WriteLine("Пример строки:  Именнованая точка: MyCat 1.5 2.3 red true");
             Console.WriteLine();
         }
 
