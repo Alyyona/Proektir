@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 namespace PrakticheskayaRabota
 {
 
@@ -40,6 +40,16 @@ namespace PrakticheskayaRabota
             Console.WriteLine(errorMessage);
             Console.WriteLine("Объект не создан. Проверьте правильность ввода.");
         }
+
+        public void ShowFinalList(List<Point2D> points)
+        {
+            Console.WriteLine("\n .... Итоговый список всех распознаных/обработанных точек .... ");
+            foreach (Point2D point in points)
+            {
+                Console.WriteLine(point.ToString());
+            }
+        }
+
 
         public void WaitToExit()
         {

@@ -17,7 +17,7 @@ namespace PrakticheskayaRabota
 
             userInterface.ShowHeader();
 
-            while(true)
+            while (true)
             {
                 string inputLine = userInterface.ReadDescription();
 
@@ -44,11 +44,7 @@ namespace PrakticheskayaRabota
 
             if (points.Count > 0)
             {
-                Console.WriteLine("\n .... Итоговый список всех распознаных/обработанных точек .... ");
-                foreach (Point2D point in points)
-                {
-                    Console.WriteLine(point.ToString());
-                }
+                userInterface.ShowFinalList(points);
             }
 
             userInterface.WaitToExit();
